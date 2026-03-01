@@ -82,13 +82,27 @@ export default function Doctors(): JSX.Element {
       <TopBarSection />
       <NavigationBarSection />
 
-      <section className="relative h-[180px] w-full overflow-hidden sm:h-[220px]">
-        <Image src="/images/blog.png" alt="Our doctors" fill className="object-cover" />
-        <div className="absolute inset-0 bg-[#1f2b6c]/55" />
-        <div className="absolute inset-0 mx-auto flex w-full max-w-6xl items-center px-4 sm:px-6">
-          <h1 className="text-4xl font-semibold text-[#1f2b6c] sm:text-5xl">Our Doctors</h1>
-        </div>
-      </section>
+    <section  className="relative h-[180px] w-full overflow-hidden sm:h-[220px]">
+      <div className="absolute inset-0 bg-[#02ddcd] rotate-180" />
+      <Image src="/images/doctors.png" alt="Our doctors" fill className="object-cover" />
+
+      <div className="absolute inset-0 rotate-180 bg-[linear-gradient(259deg,rgba(229,228,232,1)_9%,rgba(235,234,239,0)_100%)]" />
+
+      <div className="absolute inset-0 flex gap-[542px] overflow-hidden">
+        <div className="mt-[-599px] ml-[-387px] bg-app-secondary opacity-30 w-[734px] h-[734px] rounded-full" />
+        <div className="mt-[199px] bg-app-accent opacity-50 w-[734px] h-[734px] rounded-full" />
+      </div>
+
+      <div className="absolute top-[50px] left-[186px] flex flex-col gap-2 max-w-[523px]">
+        <p className="font-caption font-bold text-app-secondary text-lg tracking-[2.88px] leading-normal whitespace-nowrap">
+          Home/Doctors
+        </p>
+
+        <h1 className="font-display-2 font-normal text-app-primary text-5xl tracking-normal leading-normal mt-2">
+          Our Doctors
+        </h1>
+      </div>
+    </section>
 
       <main className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
         <section className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">

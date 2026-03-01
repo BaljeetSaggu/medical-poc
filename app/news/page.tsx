@@ -103,18 +103,25 @@ export default function News(): JSX.Element {
       <TopBarSection />
       <NavigationBarSection />
 
-      {/* Hero */}
-      <section className="relative h-[300px] w-full">
-        <Image
-          src="/images/blog.png"
-          alt="Blog"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-blue-900/60" />
-        <div className="absolute inset-0 flex flex-col justify-center container mx-auto px-4 text-white">
-          <p className="text-sm mb-2">Home / News</p>
-          <h1 className="text-5xl font-bold">Blog Posts</h1>
+      <section  className="relative h-[300px] w-full overflow-hidden sm:h-[220px]">
+        <div className="absolute inset-0 bg-[#02ddcd] rotate-180" />
+        <Image src="/images/blog.png" alt="Our doctors" fill className="object-cover" />
+
+        <div className="absolute inset-0 rotate-180 bg-[linear-gradient(259deg,rgba(229,228,232,1)_9%,rgba(235,234,239,0)_100%)]" />
+
+        <div className="absolute inset-0 flex gap-[542px] overflow-hidden">
+          <div className="mt-[-599px] ml-[-387px] bg-app-secondary opacity-30 w-[734px] h-[734px] rounded-full" />
+          <div className="mt-[199px] bg-app-accent opacity-50 w-[734px] h-[734px] rounded-full" />
+        </div>
+
+        <div className="absolute top-[50px] left-[186px] flex flex-col gap-2 max-w-[523px]">
+          <p className="font-caption font-bold text-app-secondary text-lg tracking-[2.88px] leading-normal whitespace-nowrap">
+            Home/News
+          </p>
+
+          <h1 className="font-display-2 font-normal text-app-primary text-5xl tracking-normal leading-normal mt-2">
+            Blog Posts
+          </h1>
         </div>
       </section>
 
