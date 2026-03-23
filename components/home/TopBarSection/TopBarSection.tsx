@@ -21,12 +21,12 @@ const infoItems = [
 
 export const TopBarSection = () => {
   return (
-    <section className="w-full border-t-4 border-[#d4d4d4] bg-[#f5f6f8]">
-      <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 px-4 py-4 lg:flex-row">
+    <section className="w-full bg-white">
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 px-4 py-3 lg:flex-row">
         <Link
           href="/"
           aria-label="Meddical Home"
-          className="font-display-2 text-4xl leading-none text-[#1f2b6c] sm:text-5xl"
+          className="font-display-2 text-3xl leading-none text-[#1f2b6c] sm:text-4xl"
         >
           MED<span className="text-app-secondary">DICAL</span>
         </Link>
@@ -37,14 +37,14 @@ export const TopBarSection = () => {
 
             return (
               <div key={item.title} className="flex items-center justify-center gap-3 lg:justify-start">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#1f2b6c] text-[#1f2b6c]">
-                  <Icon className="h-5 w-5" />
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#1f2b6c] text-[#1f2b6c]">
+                  <Icon className="h-4 w-4" />
                 </div>
                 <div className="leading-tight">
-                  <p className="font-body text-xs font-semibold tracking-[0.08em] text-app-primary sm:text-sm">
+                  <p className="font-body text-[10px] font-semibold tracking-[0.08em] text-app-primary sm:text-xs">
                     {item.title}
                   </p>
-                  <p className="font-body text-sm font-semibold text-app-secondary sm:text-base">
+                  <p className="font-body text-xs font-semibold text-app-secondary sm:text-sm">
                     {item.description}
                   </p>
                 </div>

@@ -80,10 +80,10 @@ export const NavigationBarSection = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-app-primary shadow-md">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4">
-        <Link href="/" className="font-display-2 text-2xl text-white md:text-3xl">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3">
+        {/* <Link href="/" className="font-display-2 text-2xl text-white md:text-3xl">
           MED<span className="text-app-accent">DICAL</span>
-        </Link>
+        </Link> */}
 
         <nav className="hidden items-center gap-5 md:flex" aria-label="Primary">
           {navigationItems.map((item) => {
@@ -94,7 +94,7 @@ export const NavigationBarSection = () => {
                 key={item.href}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={`font-body text-sm transition-colors lg:text-base ${
+                className={`font-body text-xs transition-colors lg:text-sm ${
                   active
                     ? "font-semibold text-app-accent"
                     : "text-white hover:text-app-accent"
@@ -116,7 +116,7 @@ export const NavigationBarSection = () => {
           >
             <Search className="h-4 w-4" />
           </Button>
-          <Button asChild className="rounded-full bg-app-accent px-5 text-app-primary hover:bg-app-accent/90">
+          <Button asChild className="rounded-full bg-app-accent px-5 py-2 text-xs text-app-primary hover:bg-app-accent/90">
             <Link href="/appointment">Appointment</Link>
           </Button>
         </div>

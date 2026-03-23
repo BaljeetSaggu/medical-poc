@@ -31,26 +31,26 @@ const callToActionButtons = [
 
 export const HeroCallToActionSection = () => {
   return (
-    <section className="relative z-10 -mt-8 px-4 pb-8 sm:-mt-10">
-      <div className="mx-auto grid w-full max-w-6xl gap-4 md:grid-cols-3">
+    <section className="relative z-10 -mt-5 px-4 pb-8 sm:-mt-6">
+      <div className="mx-auto grid w-full max-w-6xl gap-3 md:grid-cols-3">
         {callToActionButtons.map((button) => (
         <Button
           asChild
           key={button.text}
-          className={`${button.bgColor} group h-auto rounded-[5px] px-6 py-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}
+          className={`${button.bgColor} group h-auto rounded-[3px] px-5 py-4 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}
         >
           <Link href={button.href} className="flex w-full items-center justify-between gap-4">
             <span
-              className={`${button.textColor} text-left font-body text-base font-semibold leading-6`}
+              className={`${button.textColor} text-left font-body text-sm font-medium leading-5`}
             >
               {button.text}
             </span>
             <Image
               alt={button.iconAlt}
               src={button.icon}
-              width={52}
-              height={52}
-              className="h-12 w-12 transition-transform duration-300 group-hover:scale-105"
+              width={38}
+              height={38}
+              className="h-9 w-9 transition-transform duration-300 group-hover:scale-105"
             />
           </Link>
         </Button>
