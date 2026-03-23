@@ -70,14 +70,6 @@ export const NavigationBarSection = () => {
   return (
     <header className="sticky top-0 z-50 w-full bg-app-primary shadow-md">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4">
-        <Link
-          href="/"
-          className="[font-family:'Yeseva_One',Helvetica] text-3xl leading-none"
-        >
-          <span className="text-white">MED</span>
-          <span className="text-app-accent">DICAL</span>
-        </Link>
-
         <nav className="hidden items-center gap-5 md:flex" aria-label="Primary">
           {navigationItems.map((item) => {
             const active = isActivePath(pathname, item.href);

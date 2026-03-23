@@ -93,12 +93,12 @@ export default function Doctors(): JSX.Element {
         <div className="mt-[199px] bg-app-accent opacity-50 w-[734px] h-[734px] rounded-full" />
       </div>
 
-      <div className="absolute top-[50px] left-[186px] flex flex-col gap-2 max-w-[523px]">
-        <p className="font-caption font-bold text-app-secondary text-lg tracking-[2.88px] leading-normal whitespace-nowrap">
+      <div className="absolute top-[50px] left-[186px] flex flex-col max-w-[523px]">
+        <p className="font-caption font-normal text-app-primary text-sm tracking-[2.88px] whitespace-nowrap">
           Home/Doctors
         </p>
 
-        <h1 className="font-display-2 font-normal text-app-primary text-5xl tracking-normal leading-normal mt-2">
+        <h1 className="font-display-2 font-normal text-app-primary text-5xl tracking-normal mt-2">
           Our Doctors
         </h1>
       </div>
