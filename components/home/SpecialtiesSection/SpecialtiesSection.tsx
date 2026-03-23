@@ -1,13 +1,14 @@
-import { JSX } from "react";
+import Image from "next/image";
 import { Card, CardContent } from "../../ui/card";
 import { AppointmentBookingSection } from "../AppointmentBookingSection";
 
-export const SpecialtiesSection = (): JSX.Element => {
+export const SpecialtiesSection = () => {
   return (
     <section className="relative w-full overflow-hidden py-20">
-      <img
+      <Image
         src="/images/book-apointment.png"
         alt="Medical background"
+        fill
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-white opacity-80" />

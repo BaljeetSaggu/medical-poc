@@ -1,4 +1,5 @@
-import { JSX } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { Button } from "../../ui/button";
 
 const callToActionButtons = [
@@ -6,54 +7,55 @@ const callToActionButtons = [
     bgColor: "bg-app-primary",
     textColor: "text-white",
     text: "Book an Appointment",
+    href: "/appointment",
     icon: "/icons/39Calendar.svg",
-    iconAlt: "Element calendar",
-    iconWidth: "w-[52px]",
-    iconHeight: "h-[52px]",
-    marginLeft: "",
+    iconAlt: "Calendar icon",
   },
   {
     bgColor: "bg-app-accent",
     textColor: "text-app-primary",
-    text: "Book an Appointment",
+    text: "Find Doctor",
+    href: "/doctors",
     icon: "/icons/27Team.svg",
-    iconAlt: "Element team",
-    iconWidth: "w-[52px]",
-    iconHeight: "h-[44.24px]",
-    marginLeft: "ml-5",
+    iconAlt: "Doctors team icon",
   },
   {
     bgColor: "bg-app-secondary",
     textColor: "text-white",
-    text: "Book an Appointment",
+    text: "Service Information",
+    href: "/services",
     icon: "/icons/15Cash.svg",
-    iconAlt: "Element cash",
-    iconWidth: "w-[52px]",
-    iconHeight: "h-[38.46px]",
-    marginLeft: "ml-[21px]",
+    iconAlt: "Service information icon",
   },
 ];
 
-export const HeroCallToActionSection = (): JSX.Element => {
+export const HeroCallToActionSection = () => {
   return (
-    <section className="relative w-full flex justify-center gap-5">
-      {callToActionButtons.map((button, index) => (
+    <section className="relative z-10 -mt-8 px-4 pb-8 sm:-mt-10">
+      <div className="mx-auto grid w-full max-w-6xl gap-4 md:grid-cols-3">
+        {callToActionButtons.map((button) => (
         <Button
-          key={index}
-          className={`${button.bgColor} ${button.marginLeft} inline-flex w-[317px] h-[100px] items-center justify-center gap-14 px-5 py-[25px] rounded-[5px] hover:opacity-90 transition-opacity`}
+          asChild
+          key={button.text}
+          className={`${button.bgColor} group h-auto rounded-[5px] px-6 py-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}
         >
-          <span
-            className={`${button.textColor} font-body font-[number:var(--body-font-weight)] text-[length:var(--body-font-size)] tracking-[var(--body-letter-spacing)] leading-[var(--body-line-height)] whitespace-nowrap [font-style:var(--body-font-style)]`}
-          >
-            {button.text}
-          </span>
-          <img
-            className={`${button.iconWidth} ${button.iconHeight}`}
-            alt={button.iconAlt}
-            src={button.icon}
-          />
+          <Link href={button.href} className="flex w-full items-center justify-between gap-4">
+            <span
+              className={`${button.textColor} text-left font-body text-base font-semibold leading-6`}
+            >
+              {button.text}
+            </span>
+            <Image
+              alt={button.iconAlt}
+              src={button.icon}
+              width={52}
+              height={52}
+              className="h-12 w-12 transition-transform duration-300 group-hover:scale-105"
+            />
+          </Link>
         </Button>
       ))}
+      </div>
     </section>
   );
 };

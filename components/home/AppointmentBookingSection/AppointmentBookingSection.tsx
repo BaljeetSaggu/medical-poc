@@ -6,7 +6,6 @@ import { Button } from "../../ui/button";
 
 type FormValues = {
   name: string;
-  gender: string;
   email: string;
   phone: string;
   date: string;
@@ -18,7 +17,6 @@ type FormValues = {
 
 const initialValues: FormValues = {
   name: "",
-  gender: "",
   email: "",
   phone: "",
   date: "",
@@ -29,6 +27,7 @@ const initialValues: FormValues = {
 };
 
 const emailPattern = /\S+@\S+\.\S+/;
+const phonePattern = /^[0-9+\-\s()]{7,20}$/;
 
 const fieldBaseClasses =
   "h-[66px] w-full border-b border-[#9CB1DF] bg-transparent px-7 text-base text-white outline-none placeholder:text-white";
@@ -48,7 +47,6 @@ export default function AppointmentBookingSection(): JSX.Element {
   const validate = () => {
     const requiredValues = [
       values.name,
-      values.gender,
       values.email,
       values.phone,
       values.date,
@@ -69,6 +67,11 @@ export default function AppointmentBookingSection(): JSX.Element {
       return false;
     }
 
+    if (!phonePattern.test(values.phone)) {
+      setError("Please enter a valid phone number.");
+      return false;
+    }
+
     setError("");
     return true;
   };
@@ -82,71 +85,52 @@ export default function AppointmentBookingSection(): JSX.Element {
     }
 
     setIsSubmitting(true);
-    // window.setTimeout(() => {
-    //   setIsSubmitting(false);
-    //   setIsSubmitted(true);
-    //   setValues(initialValues);
-    // }, 1000);
+    window.setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      setValues(initialValues);
+    }, 1000);
   };
 
   return (
     <section className="w-full overflow-hidden rounded-[5px] bg-app-primary shadow-xl">
       <form onSubmit={handleSubmit} noValidate className="overflow-hidden rounded-[5px] border border-[#9CB1DF]">
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-1 md:grid-cols-2">
           <input
             value={values.name}
             onChange={(event) => handleChange("name", event.target.value)}
             className={leftFieldClasses}
             placeholder="Name"
             name="name"
+            aria-label="Name"
           />
-
-          <div className="relative">
-            <select
-              value={values.gender}
-              onChange={(event) => handleChange("gender", event.target.value)}
-              className={`${rightFieldClasses} appearance-none`}
-              name="gender"
-            >
-              <option value="" className="text-black">
-                Gender
-              </option>
-              <option value="male" className="text-black">
-                Male
-              </option>
-              <option value="female" className="text-black">
-                Female
-              </option>
-              <option value="other" className="text-black">
-                Other
-              </option>
-            </select>
-            <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white" />
-          </div>
 
           <input
             type="email"
             value={values.email}
             onChange={(event) => handleChange("email", event.target.value)}
-            className={leftFieldClasses}
+            className={rightFieldClasses}
             placeholder="Email"
             name="email"
+            aria-label="Email"
           />
 
           <input
             value={values.phone}
             onChange={(event) => handleChange("phone", event.target.value)}
-            className={rightFieldClasses}
+            className={leftFieldClasses}
             placeholder="Phone"
             name="phone"
+            aria-label="Phone"
           />
 
           <div className="relative">
             <select
               value={values.date}
               onChange={(event) => handleChange("date", event.target.value)}
-              className={`${leftFieldClasses} appearance-none`}
+              className={`${rightFieldClasses} appearance-none`}
               name="date"
+              aria-label="Date"
             >
               <option value="" className="text-black">
                 Date
@@ -168,8 +152,9 @@ export default function AppointmentBookingSection(): JSX.Element {
             <select
               value={values.time}
               onChange={(event) => handleChange("time", event.target.value)}
-              className={`${rightFieldClasses} appearance-none`}
+              className={`${leftFieldClasses} appearance-none`}
               name="time"
+              aria-label="Time"
             >
               <option value="" className="text-black">
                 Time
@@ -191,8 +176,9 @@ export default function AppointmentBookingSection(): JSX.Element {
             <select
               value={values.doctor}
               onChange={(event) => handleChange("doctor", event.target.value)}
-              className={`${leftFieldClasses} appearance-none`}
+              className={`${rightFieldClasses} appearance-none`}
               name="doctor"
+              aria-label="Doctor"
             >
               <option value="" className="text-black">
                 Doctor
@@ -214,8 +200,9 @@ export default function AppointmentBookingSection(): JSX.Element {
             <select
               value={values.department}
               onChange={(event) => handleChange("department", event.target.value)}
-              className={`${rightFieldClasses} appearance-none`}
+              className={`${leftFieldClasses} appearance-none`}
               name="department"
+              aria-label="Department"
             >
               <option value="" className="text-black">
                 Department
@@ -240,6 +227,7 @@ export default function AppointmentBookingSection(): JSX.Element {
           className="h-[190px] w-full resize-none border-b border-[#9CB1DF] bg-transparent px-7 py-5 text-base text-white outline-none placeholder:text-white"
           placeholder="Message"
           name="message"
+          aria-label="Message"
         />
 
         <div className="bg-app-accent px-4 py-6 text-center">

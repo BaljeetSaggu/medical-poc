@@ -1,8 +1,11 @@
+"use client";
+
+import Image from "next/image";
 import Link from "next/link";
+import { FormEvent, useState } from "react";
 import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
 import { Separator } from "../../ui/separator";
-import { JSX } from "react";
 
 const importantLinks = [
   { label: "Appointment", href: "/appointment" },
@@ -24,7 +27,25 @@ const socialIcons = [
   { src: "/icons/insta-light.svg", alt: "Social media icon 3" },
 ];
 
-export const FooterSection = (): JSX.Element => {
+export const FooterSection = () => {
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [isError, setIsError] = useState(false);
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setIsError(true);
+      setMessage("Enter a valid email address.");
+      return;
+    }
+
+    setIsError(false);
+    setMessage("Newsletter subscription submitted. UI only.");
+    setEmail("");
+  };
+
   return (
     <footer className="relative w-full bg-app-primary px-4 py-16">
       <div className="container mx-auto max-w-7xl">
@@ -80,19 +101,27 @@ export const FooterSection = (): JSX.Element => {
             <h3 className="[font-family:'Work_Sans',Helvetica] text-lg font-semibold tracking-[0] leading-[normal] text-white">
               Newsletter
             </h3>
-            <div className="relative flex items-center">
+            <form onSubmit={handleSubmit} noValidate className="relative">
               <Input
                 type="email"
+                aria-label="Newsletter email"
                 placeholder="Enter your email address"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
                 className="rounded-[5px] border-0 bg-app-accent pr-12 font-body text-[length:var(--body-font-size)] font-[number:var(--body-font-weight)] tracking-[var(--body-letter-spacing)] leading-[var(--body-line-height)] text-app-primary placeholder:text-app-primary [font-style:var(--body-font-style)]"
               />
               <Button
+                type="submit"
                 size="icon"
                 className="absolute right-2 h-auto bg-transparent p-0 hover:bg-transparent"
+                aria-label="Submit newsletter email"
               >
-                <img className="h-6 w-6" alt="Submit" src="/icons/send.svg" />
+                <Image className="h-6 w-6" alt="Submit" src="/icons/send.svg" width={24} height={24} />
               </Button>
-            </div>
+              {message ? (
+                <p className={`mt-3 text-sm ${isError ? "text-red-300" : "text-app-accent"}`}>{message}</p>
+              ) : null}
+            </form>
           </div>
         </div>
 
@@ -105,7 +134,7 @@ export const FooterSection = (): JSX.Element => {
           <div className="flex items-center gap-4">
             {socialIcons.map((icon) => (
               <a key={icon.alt} href="#" className="transition-opacity hover:opacity-80">
-                <img className="h-6 w-6" alt={icon.alt} src={icon.src} />
+                <Image className="h-6 w-6" alt={icon.alt} src={icon.src} width={24} height={24} />
               </a>
             ))}
           </div>

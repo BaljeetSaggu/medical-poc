@@ -1,4 +1,4 @@
-import { JSX } from "react";
+import Image from "next/image";
 import { Card, CardContent } from "../../ui/card";
 
 const contactCards = [
@@ -41,7 +41,7 @@ const contactCards = [
   },
 ];
 
-export const ContactInfoSection = (): JSX.Element => {
+export const ContactInfoSection = () => {
   return (
     <section className="relative w-full py-12">
       <div className="flex flex-col items-center mb-12">
@@ -54,15 +54,15 @@ export const ContactInfoSection = (): JSX.Element => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto px-4">
-        {contactCards.map((card, index) => (
+        {contactCards.map((card) => (
           <Card
-            key={index}
+            key={card.title}
             className={`${card.bgColor} rounded-[5px] border-0`}
           >
             <CardContent className="p-6 flex flex-col h-full">
-              <img className="w-8 h-8 mb-6" alt={card.title} src={card.icon} />
+              <Image className="mb-6 h-8 w-8" alt={card.title} src={card.icon} width={32} height={32} />
               <div className="flex flex-col gap-2">
-                <h4 className="[font-family:'Work_Sans',Helvetica] font-bold text-lg tracking-[0] leading-[normal] mb-2 ${card.textColor}">
+                <h4 className={`mb-2 text-lg font-bold ${card.textColor}`}>
                   {card.title}
                 </h4>
                 {card.isLink ? (

@@ -27,6 +27,7 @@ export const NavigationBarSection = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     setIsOpen(false);
@@ -64,12 +65,26 @@ export const NavigationBarSection = () => {
     };
 
     document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      triggerRef.current?.focus();
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isOpen]);
 
   return (
     <header className="sticky top-0 z-50 w-full bg-app-primary shadow-md">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4">
+        <Link href="/" className="font-display-2 text-2xl text-white md:text-3xl">
+          MED<span className="text-app-accent">DICAL</span>
+        </Link>
+
         <nav className="hidden items-center gap-5 md:flex" aria-label="Primary">
           {navigationItems.map((item) => {
             const active = isActivePath(pathname, item.href);
@@ -107,6 +122,7 @@ export const NavigationBarSection = () => {
         </div>
 
         <Button
+          ref={triggerRef}
           type="button"
           size="icon"
           variant="ghost"

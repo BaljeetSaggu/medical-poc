@@ -1,4 +1,5 @@
-import { JSX } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { Card, CardContent } from "../../ui/card";
 
 const newsArticles = [
@@ -38,7 +39,7 @@ const paginationDots = [
   { active: false, className: "bg-app-accent" },
 ];
 
-export const NewsUpdatesSection = (): JSX.Element => {
+export const NewsUpdatesSection = () => {
   return (
     <section className="relative w-full py-16 bg-[#fafdfe]">
       <div className="container mx-auto px-4">
@@ -59,10 +60,12 @@ export const NewsUpdatesSection = (): JSX.Element => {
             >
               <CardContent className="p-0 flex h-full">
                 <div className="w-[33%] flex-shrink-0">
-                  <img
-                    className="w-full h-full object-cover"
+                  <Image
+                    className="h-full w-full object-cover"
                     alt="Article thumbnail"
                     src={article.image}
+                    width={280}
+                    height={240}
                   />
                 </div>
 
@@ -71,22 +74,26 @@ export const NewsUpdatesSection = (): JSX.Element => {
                     <p className="font-small font-[number:var(--small-font-weight)] text-app-secondary text-[length:var(--small-font-size)] tracking-[var(--small-letter-spacing)] leading-[var(--small-line-height)] [font-style:var(--small-font-style)] mb-3">
                       {article.date}
                     </p>
-                    <h3 className="font-body-2 font-[number:var(--body-2-font-weight)] text-black text-[length:var(--body-2-font-size)] tracking-[var(--body-2-letter-spacing)] leading-[var(--body-2-line-height)] [font-style:var(--body-2-font-style)] mb-4">
-                      {article.title.split("\n").map((line, i) => (
-                        <span key={i}>
-                          {line}
-                          {i === 0 && <br />}
-                        </span>
-                      ))}
+                    <h3 className="mb-4 font-body-2 text-black text-[length:var(--body-2-font-size)] leading-[var(--body-2-line-height)]">
+                      <Link href="/about" className="hover:text-app-secondary">
+                        {article.title.split("\n").map((line, i) => (
+                          <span key={i}>
+                            {line}
+                            {i === 0 && <br />}
+                          </span>
+                        ))}
+                      </Link>
                     </h3>
                   </div>
 
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2">
-                      <img
-                        className="w-4 h-3"
+                      <Image
+                        className="h-3 w-4"
                         alt="Views"
                         src="/icons/eyes.svg"
+                        width={16}
+                        height={12}
                       />
                       <span className="font-small font-[number:var(--small-font-weight)] text-black text-[length:var(--small-font-size)] tracking-[var(--small-letter-spacing)] leading-[var(--small-line-height)] [font-style:var(--small-font-style)]">
                         {article.views}
@@ -94,10 +101,12 @@ export const NewsUpdatesSection = (): JSX.Element => {
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <img
-                        className="w-4 h-4"
+                      <Image
+                        className="h-4 w-4"
                         alt="likes"
                         src="/icons/like.svg"
+                        width={16}
+                        height={16}
                       />
                       <span className="font-small font-[number:var(--small-font-weight)] text-black text-[length:var(--small-font-size)] tracking-[var(--small-letter-spacing)] leading-[var(--small-line-height)] [font-style:var(--small-font-style)]">
                         {article.likes}

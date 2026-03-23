@@ -1,4 +1,5 @@
-import { JSX } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { Button } from "../../ui/button";
 import { Card, CardContent } from "../../ui/card";
 
@@ -34,7 +35,7 @@ const bulletPoints = [
   { text: "Always Caring", column: 2 },
 ];
 
-export const ServicesDetailsSection = (): JSX.Element => {
+export const ServicesDetailsSection = () => {
   return (
     <section className="relative w-full py-16 bg-[#149eec03]">
       <div className="container mx-auto px-4">
@@ -48,20 +49,22 @@ export const ServicesDetailsSection = (): JSX.Element => {
         </header>
 
         <div className="flex flex-col lg:flex-row gap-8 max-w-7xl mx-auto">
-          <aside className="w-full lg:w-[157px] flex-shrink-0">
+          <aside className="w-full lg:w-[180px] flex-shrink-0">
             <Card className="relative overflow-hidden border-[#1f2b6c] bg-white/20">
               <CardContent className="p-0">
-                {serviceItems.map((item, index) => (
+                {serviceItems.map((item) => (
                   <div
-                    key={index}
-                    className={`relative flex flex-col items-center gap-2 py-6 px-6 ${
-                      item.isActive ? "bg-app-primary" : ""
+                    key={item.label}
+                    className={`relative flex flex-col items-center gap-2 px-6 py-6 transition-colors ${
+                      item.isActive ? "bg-app-primary" : "hover:bg-app-primary/5"
                     }`}
                   >
-                    <img
-                      className="w-8 h-8 object-contain"
+                    <Image
+                      className="h-8 w-8 object-contain"
                       alt={item.label}
                       src={item.icon}
+                      width={32}
+                      height={32}
                     />
                     <span
                       className={`font-body font-[number:var(--body-font-weight)] text-[length:var(--body-font-size)] text-center tracking-[var(--body-letter-spacing)] leading-[var(--body-line-height)] [font-style:var(--body-font-style)] ${
@@ -73,11 +76,11 @@ export const ServicesDetailsSection = (): JSX.Element => {
                   </div>
                 ))}
                 <div className="bg-app-primary py-3 flex justify-center">
-                  <Button
+                  <Button asChild
                     variant="ghost"
                     className="font-button-text font-[number:var(--button-text-font-weight)] text-[length:var(--button-text-font-size)] leading-[var(--button-text-line-height)] text-app-accent tracking-[var(--button-text-letter-spacing)] [font-style:var(--button-text-font-style)] hover:bg-transparent hover:text-app-accent"
                   >
-                    View All
+                    <Link href="/services">View All</Link>
                   </Button>
                 </div>
               </CardContent>
@@ -117,16 +120,20 @@ export const ServicesDetailsSection = (): JSX.Element => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-6 w-full lg:w-[324px] flex-shrink-0">
-              <img
+            <div className="flex w-full flex-shrink-0 flex-col gap-6 lg:w-[324px]">
+              <Image
                 className="w-full h-auto object-cover rounded"
                 alt="Medical professionals"
                 src="/images/group-186.png"
+                width={324}
+                height={220}
               />
-              <img
+              <Image
                 className="w-full h-auto object-cover rounded"
                 alt="Medical team"
                 src="/images/group-187.png"
+                width={324}
+                height={220}
               />
             </div>
           </main>

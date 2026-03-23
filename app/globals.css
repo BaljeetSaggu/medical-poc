@@ -13,43 +13,43 @@
   --app-primary: rgba(31, 43, 108, 1);
   --app-secondary: rgba(21, 158, 236, 1);
   --black: rgba(33, 33, 36, 1);
-  --body-2-font-family: "Work Sans", Helvetica;
+  --body-2-font-family: var(--font-work-sans), Helvetica;
   --body-2-font-size: 18px;
   --body-2-font-style: normal;
   --body-2-font-weight: 400;
   --body-2-letter-spacing: 0px;
   --body-2-line-height: 140%;
-  --body-font-family: "Work Sans", Helvetica;
+  --body-font-family: var(--font-work-sans), Helvetica;
   --body-font-size: 16px;
   --body-font-style: normal;
   --body-font-weight: 400;
   --body-letter-spacing: 0px;
   --body-line-height: 140%;
-  --button-text-font-family: "Work Sans", Helvetica;
+  --button-text-font-family: var(--font-work-sans), Helvetica;
   --button-text-font-size: 14px;
   --button-text-font-style: normal;
   --button-text-font-weight: 500;
   --button-text-letter-spacing: 0px;
   --button-text-line-height: normal;
-  --caption-font-family: "Work Sans", Helvetica;
+  --caption-font-family: var(--font-work-sans), Helvetica;
   --caption-font-size: 18px;
   --caption-font-style: normal;
   --caption-font-weight: 700;
   --caption-letter-spacing: 2.88px;
   --caption-line-height: normal;
-  --display-2-font-family: "Yeseva One", Helvetica;
+  --display-2-font-family: var(--font-yeseva-one), Helvetica;
   --display-2-font-size: 32px;
   --display-2-font-style: normal;
   --display-2-font-weight: 400;
   --display-2-letter-spacing: 0px;
   --display-2-line-height: normal;
-  --small-font-family: "Work Sans", Helvetica;
+  --small-font-family: var(--font-work-sans), Helvetica;
   --small-font-size: 14px;
   --small-font-style: normal;
   --small-font-weight: 400;
   --small-letter-spacing: 0px;
   --small-line-height: normal;
-  --title-font-family: "Work Sans", Helvetica;
+  --title-font-family: var(--font-work-sans), Helvetica;
   --title-font-size: 26px;
   --title-font-style: normal;
   --title-font-weight: 500;
@@ -233,8 +233,46 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: var(--font-work-sans), Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-yeseva-one), Georgia, serif;
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-app-secondary focus-visible:ring-offset-2;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }

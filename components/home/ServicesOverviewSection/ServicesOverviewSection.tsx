@@ -1,5 +1,4 @@
-import { JSX } from "react";
-import { Card, CardContent } from "../../ui/card";
+import Image from "next/image";
 
 const specialties = [
   {
@@ -53,7 +52,7 @@ const specialties = [
   },
 ];
 
-export const ServicesOverviewSection = (): JSX.Element => {
+export const ServicesOverviewSection = () => {
   return (
     <section className="relative w-full flex flex-col gap-16 py-16">
       <header className="flex flex-col gap-2 items-center">
@@ -65,11 +64,11 @@ export const ServicesOverviewSection = (): JSX.Element => {
         </h2>
       </header>
 
-      <div className="relative h-[516px] max-w-[992px] mx-auto w-full">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-0">
-          {specialties.map((specialty, index) => (
+      <div className="mx-auto w-full max-w-[992px] px-4">
+        <div className="grid grid-cols-2 gap-0 md:grid-cols-3 lg:grid-cols-4">
+          {specialties.map((specialty) => (
             <div
-              key={`specialty-${index}`}
+              key={specialty.name}
               className="
         group
         flex
@@ -85,16 +84,18 @@ export const ServicesOverviewSection = (): JSX.Element => {
         p-5
       "
             >
-              <CardContent className="p-0 flex flex-col gap-3 items-center justify-center">
-                <img
-                  className="w-[50px] h-[50px] object-contain"
+              <div className="flex flex-col items-center justify-center gap-3 p-0">
+                <Image
+                  className="h-[50px] w-[50px] object-contain transition-transform duration-300 group-hover:scale-110"
                   alt={`${specialty.name} icon`}
                   src={specialty.icon}
+                  width={50}
+                  height={50}
                 />
-                <p className="font-normal text-base text-center whitespace-nowrap transition-colors duration-300 group-hover:text-app-accent">
+                <p className="text-center text-base font-normal transition-colors duration-300 group-hover:text-app-accent">
                   {specialty.name}
                 </p>
-              </CardContent>
+              </div>
             </div>
           ))}
         </div>

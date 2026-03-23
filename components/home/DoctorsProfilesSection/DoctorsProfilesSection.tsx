@@ -1,4 +1,5 @@
-import { JSX } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { Button } from "../../../components/ui/button";
 import { Card, CardContent } from "../../ui/card";
 
@@ -25,7 +26,7 @@ const doctorsData = [
 
 const paginationDots = [{ active: false }, { active: true }, { active: false }];
 
-export const DoctorsProfilesSection = (): JSX.Element => {
+export const DoctorsProfilesSection = () => {
   return (
     <section className="relative w-full py-16 px-4">
       <div className="max-w-[992px] mx-auto">
@@ -42,14 +43,16 @@ export const DoctorsProfilesSection = (): JSX.Element => {
           {doctorsData.map((doctor) => (
             <Card
               key={doctor.id}
-              className="overflow-hidden border-0 shadow-none"
+              className="overflow-hidden border-0 shadow-none transition-transform duration-300 hover:-translate-y-1"
             >
               <CardContent className="p-0">
                 <div className="flex flex-col">
-                  <img
-                    className="w-full h-[350px] object-cover"
+                  <Image
+                    className="h-[350px] w-full object-cover"
                     alt={doctor.name}
                     src={doctor.image}
+                    width={360}
+                    height={350}
                   />
 
                   <div className="bg-app-accent p-6 flex flex-col items-center">
@@ -61,31 +64,15 @@ export const DoctorsProfilesSection = (): JSX.Element => {
                       {doctor.specialty}
                     </p>
 
-                    <div className="flex gap-4 mb-0">
-                      <img
-                          
-                          className="w-6 h-6"
-                          alt="Social media icon"
-                          src="/icons/in.svg"
-                        />
-                        <img
-                          
-                          className="w-6 h-6"
-                          alt="Social media icon"
-                          src="/icons/facebook.svg"
-                        />
-                        <img
-                          
-                          className="w-6 h-6"
-                          alt="Social media icon"
-                          src="/icons/insta.svg"
-                        />
-                      
+                    <div className="mb-0 flex gap-4">
+                      <Image className="h-6 w-6" alt="LinkedIn icon" src="/icons/in.svg" width={24} height={24} />
+                      <Image className="h-6 w-6" alt="Facebook icon" src="/icons/facebook.svg" width={24} height={24} />
+                      <Image className="h-6 w-6" alt="Instagram icon" src="/icons/insta.svg" width={24} height={24} />
                     </div>
                   </div>
 
-                  <Button className="w-full bg-app-primary text-app-accent rounded-none rounded-b-[5px] h-[46px] font-body font-[number:var(--body-font-weight)] text-[length:var(--body-font-size)] tracking-[var(--body-letter-spacing)] leading-[var(--body-line-height)] [font-style:var(--body-font-style)] hover:bg-app-primary/90">
-                    View Profile
+                  <Button asChild className="h-[46px] w-full rounded-none rounded-b-[5px] bg-app-primary font-body text-[length:var(--body-font-size)] text-app-accent hover:bg-app-primary/90">
+                    <Link href="/doctors">View Profile</Link>
                   </Button>
                 </div>
               </CardContent>
